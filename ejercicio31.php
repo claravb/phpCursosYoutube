@@ -7,13 +7,25 @@
     $chkhtml="";
     $chkcss="";
 
+    $isOption="";
+
+    $txtComentario="";
+
     if($_POST) {
         $txtNombre=(isset($_POST['txtNombre'])) ? $_POST['txtNombre'] : "";
         $rdgLenguaje=(isset($_POST['lenguaje'])) ? $_POST['lenguaje'] : "";
-
+        
         $chkphp=( isset($_POST['chkphp'])=="si" ) ? "checked" : "";
         $chkhtml=(isset($_POST['chkhtml'])=="si" ) ? "checked" : "";
         $chkcss=(isset($_POST['chkcss'])=="si" ) ? "checked" : "";
+        
+        $isOption=(isset($_POST['isOption'])) ? $_POST['isOption'] : "";
+        //print($_POST['isOption']);
+        
+        $txtComentario=(isset($_POST['txtComentario'])) ? $_POST['txtComentario'] : "";
+        // Instruccion de insertar
+        // Rutina de algun calculo
+        // Aqui puedes alterar esos valores para mostrar diferentes valores modificados
     }
 ?>
 
@@ -27,8 +39,18 @@
 </head>
 <body>
     <?php if($_POST) {?>
-    <strong>Hola </strong>: <?php echo $txtNombre;?><br>
-    <strong>Tu lenguaje es </strong>: <?php echo $rdgLenguaje;?><br>
+    <strong>Hola </strong>: <?php echo $txtNombre;?>
+    <br>
+    <strong>Tu lenguaje es </strong>: <?php echo $rdgLenguaje;?>
+    <br>
+    <strong>Estas aprendiendo: </strong><br>
+    - <?php echo ($chkphp=="checked")?"PHP":""; ?> <br>
+    - <?php echo ($chkhtml=="checked")?"HTML":""; ?> <br>
+    - <?php echo ($chkcss=="checked")?"CSS":""; ?> <br>
+    <br><br>
+    <strong>Tu opcion es: </strong> <?php echo $isOption; ?>
+    <br><br>
+    <strong>Tu comentario es: </strong> <?php echo $txtComentario; ?> <br>
 
     <?php }?>
     <form action="ejercicio31.php" method="post">
@@ -43,6 +65,21 @@
         <br> php: <input type="checkbox" <?php echo $chkphp;?> name="chkphp" value="si" id=""> <br>
         <br> html: <input type="checkbox" <?php echo $chkhtml;?> name="chkhtml" value="si" id=""> <br>
         <br> css: <input type="checkbox" <?php echo $chkcss;?> name="chkcss" value="si" id=""> <br><br>
+        
+        <br><br>
+        Que opcion eliges?<br> <br>
+        <select name="isOption" id="">
+            <option value="">[Ninguna]</option>
+            <option value="option1" <?php echo ($isOption=="option1")?"selected":"" ?> >Opcion 1</option>
+            <option value="option2" <?php echo ($isOption=="option2")?"selected":"" ?> >Opcion 2</option>
+            <option value="option3" <?php echo ($isOption=="option3")?"selected":"" ?> >Opcion 3</option> <br> <br>
+        </select>
+        <br><br>
+        Tienes alguna duda?<br><br>
+        <textarea name="txtComentario" id="" cols="30" rows="10"><br>
+        <?php echo $txtComentario; ?>
+        </textarea><br><br>
+        
         <input type="submit" value="Enviar informacion">
     </form>
 </body>
